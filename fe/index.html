@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <header class="header">Trading BOT</header>
+    <div class="content">
+        <div class="content__box">
+            <p class="details">Based on data from <a class="details" href = "https://min-api.cryptocompare.com">https://min-api.cryptocompare.com</a></p>
+
+
+            <!--test-->
+
+            <div class="tab">
+                <button class="tablinks"  class="active" onclick="openCity(event, 'Bitcoin')">Bitcoin</button>
+                <button class="tablinks"  onclick="openCity(event, 'Ethereum')">Ethereum</button>
+                <button class="tablinks"  onclick="openCity(event, 'Test')">Test</button>
+            </div>
+
+            <div id="Bitcoin" class="tabcontent">
+                <h3>Bitcoin</h3>
+                <p>London is the capital city of England.</p>
+            </div>
+
+            <div id="Ethereum" class="tabcontent">
+                <h3>Ethereum</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="Test" class="tabcontent">
+                <h3>Test</h3>
+                <p>Tokyo is the capital of Japan.</p>
+            </div>
+
+            <!--test-->
+
+
+        </div>
+        <div class="divider"></div>
+        <div class="content__box">
+            <p class="details">Decision</p>
+            <p class="result">BUY</p>
+        </div>
+    </div>
+
+<!--test-->
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+<!--test-->
+</body>
+</html>

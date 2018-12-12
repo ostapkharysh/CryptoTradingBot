@@ -1,0 +1,88 @@
+body {
+    /*font-family: 'Montserrat';*/
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.header{
+    margin-left: 55px;
+    margin-top: 45px;
+
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.details{
+    font-size: 19px;
+    color: #979797;
+}
+
+.content__box{
+    margin-left: 55px;
+    margin-right: 55px;
+
+}
+
+.divider {
+    width: 1px;
+    height: 250px;
+    background:#979797;
+}
+
+.result{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #315EFB;
+    width: 296px;
+    height: 141px;
+    line-height: 141px;
+    font-weight: 500;
+    font-size: 60px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/*test*/
+
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #979797;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    font-family: 'Montserrat', sans-serif;
+    background-color: inherit;
+
+    border: none;
+    border-right: 1px solid #979797;
+    border-left: 1px solid #979797;
+    border-top: 1px solid #979797;
+
+    outline: none;
+    cursor: pointer;
+    height: 42px;
+    font-size: 17px;
+    width: 161px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #839efc
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #315EFB;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /*border: 1px solid #ccc;*/
+    border-top: none;
+}
