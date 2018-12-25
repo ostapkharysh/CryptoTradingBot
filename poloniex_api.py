@@ -1,26 +1,14 @@
 from poloniex import Poloniex
-#https://pypi.org/project/poloniex/#
-
-
-polo = Poloniex()
-help(polo)
-
-polo = Poloniex()
-ticker = polo.returnTicker()['BTC_ETH']
-print(ticker)
-
-
-from poloniex import Poloniex
 import os
 
 
-api_key = os.environ.get("CAXFKPES-ZVEVH9S2-68O93JFD-LHA72YW5")
-api_secret = os.environ.get("612fb1d36b098a4dfee559712115f9c0220c769b8a2a98b140d9f760885ee72d8e3d595a756c3b0b60ceeba60d59d18cc099a9dc6c4e5da51284104db9a5592e")
+api_key = os.environ.get("QY44P4MS-OP962F3U-Q4GG8019-9BGU678M")
+api_secret = os.environ.get("451e6efe08c36b97f49d38b2057845389576dfd96ad5f2ef0da3db05fb9facab65819a8e27fc3e137a0bbf6bb139d86646df0b5f59ab8ccaa5439eb6d6402787")
 
 polo = Poloniex(api_key, api_secret)
 
 ticker = polo.returnTicker()['BTC_ETH']
 print(ticker)
-#
+
 balances = polo.returnBalances()
 print(balances)
