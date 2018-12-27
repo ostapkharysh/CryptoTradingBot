@@ -52,13 +52,15 @@ def EMA_trader(df):
     else:
         decision = "buy"
 
+    print('ema decision', decision)
     return decision
 
 
 def conv_for_server(dataframe):
     lst = []
     for el in dataframe.values:
-        lst.append({"x": dateutil.parser.parse(str(el[0])).timestamp(), "y": el[1]})
+        dic = {'x': dateutil.parser.parse(str(el[0])).timestamp(), 'y': el[1]}
+        lst.append(dic)
     return lst
 
 
@@ -81,26 +83,29 @@ def rsi_trader(prices, n):
 def start_trade():
     global rsi_status, ema_status
     while True:
-        rsi_df = minute_price_historical('ETH', 'BTC', 10, 1, ['Coinbase'])
+        rsi_df = minute_price_historical('ETC', 'BTC', 10, 1, ['Coinbase'])
         ema_df = minute_price_historical('BTC', 'USD', 30, 1, ['Coinbase'])
         rsi_state = rsi_trader(rsi_df['close'].tolist(), 10)
         ema_state = EMA_trader(ema_df)
         if rsi_state != rsi_status and rsi_state != 'hold':
             rsi_status = rsi_state
-            # order = place_order(API_KEY, API_SECRET, currency='ETHXBT', action=rsi_state, amount=10)
-            # print("rsi", order)
+            order = place_order(API_KEY, API_SECRET, currency='ETHXBT',
+                                action=rsi_state, amount=10)
+            print("rsi", order)
             with open('rsi.txt', 'w+') as rsi_f:
                 rsi_f.write(rsi_state)
         else:
+            rsi_status = 'hold'
             with open('rsi.txt', 'w+') as rsi_f:
                 rsi_f.write('hold')
         if ema_state != ema_status and ema_state != 'hold':
             ema_status = ema_state
-            # order = place_order(API_KEY, API_SECRET, action=ema_state, amount=10)
-            # print("ema", order)
+            order = place_order(API_KEY, API_SECRET, action=ema_state, amount=10)
+            print("ema", order)
             with open('ema.txt', 'w+') as ema_f:
                 ema_f.write(ema_state)
         else:
+            ema_status = 'hold'
             with open('ema.txt', 'w+') as ema_f:
                 ema_f.write('hold')
         time.sleep(60)

@@ -66,7 +66,6 @@
             type: "GET",
             url: "/get_data/btc",
             success: function (response) {
-                console.log(response.data);
                 window.onload = function () {
                     var chart = new CanvasJS.Chart("bitcoin-plot", {
                         animationEnabled: true,

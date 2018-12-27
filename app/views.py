@@ -1,7 +1,6 @@
 from app import app, render_template, jsonify, request
 from visualize import generate_plotly_url
 from predictions import minute_price_historical, conv_for_server
-import json
 
 
 @app.route('/')
@@ -23,8 +22,10 @@ def get_status(algorithm):
 @app.route('/get_data/<string:crypto>')
 def get_data(crypto):
     if crypto == 'etc':
-        return jsonify({"data": conv_for_server(minute_price_historical('ETH', 'BTC', 10, 1, ['Coinbase']))})
-    return jsonify({"data": conv_for_server(minute_price_historical('BTC', 'USD', 30, 1, ['Coinbase']))})
+        lst = conv_for_server(minute_price_historical('ETH', 'BTC', 10, 1, ['Coinbase']))
+        return jsonify({"data": lst})
+    lst = conv_for_server(minute_price_historical('BTC', 'USD', 30, 1, ['Coinbase']))
+    return jsonify({"data": lst})
 
 
 @app.route('/change_status', methods=['POST'])
