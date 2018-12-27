@@ -1,6 +1,6 @@
 # Crypto Trading Bot
 
-The Crypto trading Bot provides the possibility to analyze the data from [Poloniex](https://poloniex.com) and make trading predictions base on the custom algorithm.
+The Crypto trading Bot provides the possibility to analyze the data from [Bitmex](https://www.bitmex.com) and make trading predictions base on the custom algorithm.
 
 ## Getting Started
 
