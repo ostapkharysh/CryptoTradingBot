@@ -33,9 +33,10 @@ body {
 }
 
 .result{
+    text-transform: uppercase;
     margin-top: 0px;
     margin-bottom: 0px;
-    background-color: #315EFB;
+    background-color: #B2BEB5;
     width: 296px;
     height: 141px;
     line-height: 141px;

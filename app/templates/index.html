@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800' rel='stylesheet'
+          type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<h1 class="header">Trading BOT</h1>
+<div class="content">
+    <div class="content__box">
+        <p class="details">Based on data from <a class="details" href="https://min-api.cryptocompare.com">https://min-api.cryptocompare.com</a>
+        </p>
+        <!--PLOTLY-->
+
+        <!--PLOTLY-->
+
+        <div class="tab">
+            <button class="tablinks" class="active" onclick="openCity(event, 'Bitcoin')">Bitcoin</button>
+            <button class="tablinks" onclick="openCity(event, 'Ethereum')">Ethereum</button>
+        </div>
+
+        <div id="Bitcoin" class="tabcontent">
+            <h3>Chart example</h3>
+            <div id="bitcoin-plot"></div>
+        </div>
+
+        <div id="Ethereum" class="tabcontent">
+            <h3>Chart example</h3>
+            <div id="ethereum-plot"></div>
+        </div>
+
+
+    </div>
+    <script type="text/javascript">
+        setInterval(
+            $.ajax({
+            type: "GET",
+            url: "/get_data/etc",
+            success: function (response) {
+                window.onload = function () {
+                    var chart = new CanvasJS.Chart("ethereum-plot", {
+                        animationEnabled: true,
+                        theme: "light2",
+                        title: {
+                            text: "Simple Line Chart"
+                        },
+                        axisY: {
+                            includeZero: false
+                        },
+                        data: [{
+                            type: "line",
+                            xValueType: "dateTime",
+                            dataPoints: response.data
+                        }]
+                    });
+                    chart.render();
+                }
+            }
+        }) ,6000);
+        setInterval(
+            $.ajax({
+            type: "GET",
+            url: "/get_data/btc",
+            success: function (response) {
+                console.log(response.data);
+                window.onload = function () {
+                    var chart = new CanvasJS.Chart("bitcoin-plot", {
+                        animationEnabled: true,
+                        theme: "light2",
+                        title: {
+                            text: "Simple Line Chart"
+                        },
+                        axisY: {
+                            includeZero: false
+                        },
+                        data: [{
+                            type: "line",
+                            xValueType: "dateTime",
+                            dataPoints: response.data
+                        }]
+                    });
+                    chart.render();
+                }
+            }
+        }) ,6000);
+    </script>
+    <div class="divider"></div>
+    <section>
+        <div class="content__box">
+            <p class="details">Decision RCI</p>
+            <p class="result" id="result-rsi">HOLD</p>
+        </div>
+        <div class="content__box">
+            <p class="details">Decision EMA</p>
+            <p class="result" id="result-ema">HOLD</p>
+        </div>
+    </section>
+</div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+    var colors = {
+        "buy": "#009900",
+        "hold": "#B2BEB5",
+        "sell": "#e60000"
+    };
+    setInterval(function () {
+        $.ajax({
+            type: "GET",
+            url: "/get_status/ema",
+            success: function (response) {
+                let state = response.state;
+                let result = document.getElementById('result-ema');
+                result.innerHTML = state;
+                result.style.backgroundColor = colors[state];
+            }
+        });
+    }, 5000);
+    setInterval(function () {
+        $.ajax({
+            type: "GET",
+            url: "/get_status/rsi",
+            success: function (response) {
+                let state = response.state;
+                let result = document.getElementById('result-rsi');
+                result.innerHTML = state;
+                result.style.backgroundColor = colors[state];
+            }
+        });
+    }, 5000);
+</script>
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+</body>
+</html>
