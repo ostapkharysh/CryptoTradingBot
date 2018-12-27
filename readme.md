@@ -1,6 +1,6 @@
 # Crypto Trading Bot
 
-The Crypto trading Bot provides the possibility to analyze the data from [Bitmex](https://www.bitmex.com) and make trading predictions base on the custom algorithm.
+The Crypto trading Bot provides the possibility to analyze the data from [CryptoCompare](https://www.cryptocompare.com/)  and make trading predictions base on the custom algorithm on [Bitmex](https://www.bitmex.com)
 
 ## Getting Started
 
